@@ -5,14 +5,11 @@
 	logallrefupdates = true
 	symlinks = false
 	ignorecase = true
+[lfs]
+	repositoryformatversion = 0
 [remote "origin"]
 	url = https://github.com/michaelsahlmann/arbol.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
-[lfs]
-	repositoryformatversion = 0
 [branch "main"]
 	remote = origin
 	merge = refs/heads/main
-	vscode-merge-base = origin/main
-	vscode-merge-base = origin/main
-	vscode-merge-base = origin/main
