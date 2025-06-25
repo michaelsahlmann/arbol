@@ -1,0 +1,10 @@
+feat: Integrate Supabase for user progress tracking with auto-save functionality
+
+- Added @supabase/supabase-js dependency for Supabase integration.
+- Implemented user progress tracking with checkboxes in the MaterialTree component.
+- Created UserIdInput and ProgressDisplay components for user interaction and progress visualization.
+- Developed useAutoSave hook to handle automatic saving of user progress every 5 minutes.
+- Enhanced MaterialTree and TreeNode components to support user progress state.
+- Added error handling and success messages for user actions.
+- Created a comprehensive Supabase setup guide and updated README with configuration instructions.
+- Established database schema and initial data for user progress in Supabase.

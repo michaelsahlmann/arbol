@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --transition-duration: 300ms;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
+    'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: linear-gradient(135deg, #0a0f1c, #1a1f2c);
+  min-height: 100vh;
+  color: #e4e4e7;
+}
+
+.tree-children {
+  position: relative;
+  animation: slideDown var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tree-branch {
+  transition: all var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tree-branch:hover {
+  background: linear-gradient(to right, rgba(74, 222, 128, 0.05), transparent);
+}
+
+.tree-connector-vertical {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    rgba(74, 222, 128, 0.3),
+    rgba(74, 222, 128, 0.6)
+  );
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
+  transform-origin: top;
+  transition: all var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tree-connector-horizontal {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(to right,
+    rgba(74, 222, 128, 0.6),
+    rgba(74, 222, 128, 0.3)
+  );
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
+  transform-origin: left;
+  transition: all var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tree-node-pulse {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #4ade80;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.circuit-pattern {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(74, 222, 128, 0.15) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+}
