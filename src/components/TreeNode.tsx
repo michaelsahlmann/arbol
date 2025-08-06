@@ -20,6 +20,7 @@ const TreeNode: React.FC<TreeNodeProps> = ({
   userId
 }) => {
   const [isExpanded, setIsExpanded] = useState(level === 0);
+  const [isStrikethrough, setIsStrikethrough] = useState(false);
   const hasChildren = node.children && node.children.length > 0;
   const isLeaf = !hasChildren || node.children?.length === 0;
   const isCompleted = userProgress[node.id] || false;
@@ -38,6 +39,7 @@ const TreeNode: React.FC<TreeNodeProps> = ({
 
   const handleCheckboxClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setIsStrikethrough(!isStrikethrough);
     if (onNodeToggle && userId) {
       onNodeToggle(node.id, !isCompleted);
     }
@@ -105,7 +107,7 @@ const TreeNode: React.FC<TreeNodeProps> = ({
             node.link ? 'cursor-pointer hover:text-emerald-300' : ''
           } ${level === 0 ? 'text-xl font-medium tracking-tight text-emerald-200' : 'text-base text-emerald-100/90'}`}
         >
-          <span className="relative">
+          <span className={`relative ${isStrikethrough ? 'line-through text-emerald-100/50' : ''}`}>
             {node.name}
             {node.link && (
               <ExternalLink 
@@ -122,19 +124,15 @@ const TreeNode: React.FC<TreeNodeProps> = ({
 
         {/* Checkbox para nodos finales */}
         {isLeaf && userId && (
-          <button
-            onClick={handleCheckboxClick}
-            className="ml-auto p-1.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20
-                     shadow-lg shadow-emerald-500/5 hover:shadow-emerald-500/10 
-                     transition-all duration-300 group-hover:scale-110"
+          <input
+            type="checkbox"
+            checked={isCompleted}
+            onChange={(e) => handleCheckboxClick(e as unknown as React.MouseEvent)}
+            className="ml-auto w-5 h-5 rounded-lg bg-emerald-500/10 border-emerald-500/20
+                     checked:bg-emerald-500 checked:border-emerald-500
+                     transition-all duration-300 cursor-pointer"
             aria-label={isCompleted ? "Marcar como incompleto" : "Marcar como completo"}
-          >
-            {isCompleted ? (
-              <CheckSquare size={16} className="text-emerald-400" />
-            ) : (
-              <Square size={16} className="text-emerald-400/60" />
-            )}
-          </button>
+          />
         )}
       </div>
       
